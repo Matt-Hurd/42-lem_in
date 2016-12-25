@@ -59,7 +59,6 @@ void	backtrack(t_lemin *lemin, int *test_path, int pc, int index)
 				invalid = 1;
 		if (!invalid)
 		{
-			// printf("%d\n", pc);
 			test_path[pc] = index;
 			backtrack(lemin, test_path, pc + 1, index);
 		}
@@ -76,7 +75,9 @@ void	find_best_paths(t_lemin *lemin)
 		lst = lst->next;
 	test_path = (int *)ft_memalloc(sizeof(int) * lemin->pc);
 	lemin->best_paths = (int *)ft_memalloc(sizeof(int) * lemin->pc);
-	backtrack(lemin, test_path, 0, -1);
+	lemin->pc += 1;
+	while (lemin->best_len == -1 && --lemin->pc)
+		backtrack(lemin, test_path, 0, -1);
 }
 
 
@@ -96,7 +97,6 @@ static void		list_to_array(t_lemin *lemin, t_list *lst)
 	while (lst)
 	{
 		lemin->patharr[--len] = (*(t_path **)lst->content);
-		// printf("%p, %d\n", lemin->patharr[len], len);
 		lst = lst->next;
 	}
 }
@@ -116,60 +116,11 @@ void	solve(t_lemin *lemin)
 		while (lemin->patharr[x]->links[++y])
 			;
 		lemin->patharr[x]->length = y;
-		// printf("\n");
 	}
 	find_best_paths(lemin);
 	lemin->ants = (t_ant *)ft_memalloc(sizeof(t_ant) * (lemin->num_ants + 1));
 	x = -1;
 	while (++x < lemin->num_ants)
 		lemin->ants[x].path = -1;
-	// x = -1;
-	// printf("Best\n");
-	// if (lemin->best_len == -1)
-	// {
-	// 	printf("None\n");
-	// 	return ;
-	// }
-	// while (++x < lemin->pc)
-	// {
-	// 	y = -1;
-	// 	while (lemin->patharr[lemin->best_paths[x]]->links[++y])
-	// 		printf("%s, ", lemin->patharr[lemin->best_paths[x]]->links[y]->name);
-	// 	printf("\n");
-	// }
 	print_solution(lemin);
 }
-
-
-// void	backtrack(t_lemin *lemin, int *test_path, int pc, int index)
-// {
-// 	int i;
-// 	int invalid;
-
-
-// 	if (pc == lemin->pc && (find_length(lemin, test_path, pc) < lemin->best_len || lemin->best_len == 0))
-// 	{
-// 		copy_arr(lemin->best_paths, test_path, lemin->pc);
-// 		lemin->best_len = find_length(lemin, test_path, pc);
-// 	}
-// 	// else if (lemin->best_len > 0 && find_length(lemin, test_path, pc) >= lemin->best_len)
-// 	// 	return ;
-// 	if (pc == lemin->pc)
-// 	{
-// 		// printf("a %d, %d, %d\n", test_path[0], test_path[1], find_length(lemin, test_path, pc));
-// 		return ;
-// 	}
-// 	while (lemin->patharr[++index])
-// 	{
-// 		i = -1;
-// 		invalid = 0;
-// 		while (pc && test_path[++i] && !invalid)
-// 			invalid = has_overlap(lemin, test_path[i], index);
-// 		if (!invalid)
-// 		{
-// 		printf("%d, %d\n", index, pc);
-// 			test_path[pc] = index;
-// 			backtrack(lemin, test_path, pc + 1, index);
-// 		}
-// 	}
-// }

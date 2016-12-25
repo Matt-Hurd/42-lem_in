@@ -16,7 +16,9 @@ SRC	=		main.c \
 			parse.c \
 			solve.c \
 			paths.c \
-			printer.c
+			printer.c \
+			error.c \
+			validate.c
 
 ifdef ALLOCWRAP
 	LDFLAGS += $(HOME)/lib/alloc_wrap.c -ldl

@@ -61,5 +61,8 @@ void	find_paths(t_lemin *lemin, t_list *path, t_room *room);
 void	solve(t_lemin *lemin);
 void	print_rooms(t_lemin *lemin);
 void	print_solution(t_lemin *lemin);
+void	ft_error(char *message);
+void	validate(t_lemin *lemin);
+void	validate_rooms(t_lemin *lemin);
 
 #endif

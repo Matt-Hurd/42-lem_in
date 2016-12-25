@@ -8,6 +8,7 @@ int	main(int ac, char **av)
 	(void)av;
 	lemin = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	parse(lemin);
+	validate(lemin);
 	solve(lemin);
 	return (0);
 }
