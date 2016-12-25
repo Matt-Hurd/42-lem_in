@@ -46,6 +46,7 @@ int				ft_get_next_line(int const fd, char **line)
 	static char	save[BUFF_SIZE] = "";
 	char		*occ;
 
+	ret = 0;
 	*line = (char *)ft_memalloc(sizeof(char *)
 		* (BUFF_SIZE + ft_strlen(save) + 1));
 	*line = ft_strcpy(*line, save);

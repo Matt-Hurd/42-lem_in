@@ -10,16 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	lem_in
+NAME	=	lem-in
 
 SRC	=		main.c \
-			parse.c
+			parse.c \
+			solve.c \
+			paths.c \
+			printer.c
 
 ifdef ALLOCWRAP
 	LDFLAGS += $(HOME)/lib/alloc_wrap.c -ldl
 endif
 
-OBJ1		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -O3 -funroll-loops -march=native
 
