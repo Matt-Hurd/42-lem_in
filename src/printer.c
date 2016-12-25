@@ -16,16 +16,20 @@ void	ft_put_move(int ant, char *name)
 
 void	move_ant(t_lemin *lemin, int path)
 {
-	int x;
+	int		x;
+	char	*name;
 
 	x = -1;
 	while (++x < lemin->num_ants)
 	{
 		if (lemin->ants[x].path == -1)
 		{
-			ft_put_move(x + 1, lemin->patharr[path]->links[0]->name);
+			name = lemin->patharr[path]->links[0] ? lemin->patharr[path]->links[0]->name : lemin->end->name;
+			ft_put_move(x + 1, name);
 			lemin->remaining_ants--;
 			lemin->ants[x].path = path;
+			if (!lemin->patharr[path]->links[0])
+				lemin->ants[x].room = -1;
 			return ;
 		}
 	}
@@ -70,7 +74,7 @@ void	do_turn(t_lemin *lemin)
 			if (x == y)
 				continue;
 			if (lemin->patharr[lemin->best_paths[x]]->length > lemin->patharr[lemin->best_paths[y]]->length)
-				total += lemin->patharr[lemin->best_paths[x]]->length / lemin->patharr[lemin->best_paths[y]]->length;
+				total += lemin->patharr[lemin->best_paths[x]]->length / (lemin->patharr[lemin->best_paths[y]]->length + 1);
 		}
 		if (total < lemin->remaining_ants)
 			move_ant(lemin, lemin->best_paths[x]);
@@ -80,6 +84,8 @@ void	do_turn(t_lemin *lemin)
 
 void	print_solution(t_lemin *lemin)
 {
+	if (lemin->pc == 0)
+		ft_error("No solution");
 	lemin->remaining_ants = lemin->num_ants;
 	ft_putchar('\n');
 	sort_paths(lemin);
