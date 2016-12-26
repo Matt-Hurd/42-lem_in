@@ -66,7 +66,12 @@ void	parse(t_lemin *lemin)
 	line = 0;
 	while ((res = ft_get_next_line(0, &str)) > 0)
 	{
-		if (next == 2 || next == 3)
+		if (line++ == 0)
+		{
+			if (!(lemin->num_ants = ft_atoi(str)))
+				ft_error("No ants");
+		}
+		else if (next == 2 || next == 3)
 		{
 			parse_room(lemin, str, next);
 			next = 1;
@@ -75,8 +80,6 @@ void	parse(t_lemin *lemin)
 			next = (str[2] == 's' ? 2 : 3);
 		else if (str[0] == '#')
 			;
-		else if (line++ == 0)
-			lemin->num_ants = ft_atoi(str);
 		else if (ft_count_words(str, ' ') == 3)
 		{
 			if (next == 0)
