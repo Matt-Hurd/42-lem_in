@@ -6,9 +6,11 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:31:58 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 05:32:06 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 05:35:32 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <lem_in.h>
 
 int		find_length(t_lemin *lemin, int *test_path, int pc)
 {
