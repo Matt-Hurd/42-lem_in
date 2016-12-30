@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/30 05:19:18 by mhurd             #+#    #+#             */
+/*   Updated: 2016/12/30 05:25:43 by mhurd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <lem_in.h>
 
 void	parse_link(t_lemin *lemin, char *str)
 {
-	char **split;
-	t_room *r1;
-	t_room *r2;
-	t_list *iter;
+	char	**split;
+	t_room	*r1;
+	t_room	*r2;
+	t_list	*iter;
 
 	split = ft_strsplit(str, '-');
 	iter = lemin->rooms;
@@ -30,8 +42,8 @@ void	parse_link(t_lemin *lemin, char *str)
 
 void	parse_room(t_lemin *lemin, char *str, int next)
 {
-	char **split;
-	t_room *room;
+	char	**split;
+	t_room	*room;
 
 	if (ft_count_words(str, ' ') != 3 || str[0] == 'L')
 		ft_error("Bad room name");
@@ -55,6 +67,33 @@ void	parse_room(t_lemin *lemin, char *str, int next)
 	}
 }
 
+int		parse_rooms(char *str, int *next, int *line, t_lemin *lemin)
+{
+	if ((*line)++ == 0)
+	{
+		if (!(lemin->num_ants = ft_atoi(str)))
+			ft_error("No ants");
+	}
+	else if (*next == 2 || *next == 3)
+	{
+		parse_room(lemin, str, *next);
+		*next = 1;
+	}
+	else if (ft_strequ(str, "##start") || ft_strequ(str, "##end"))
+		*next = (str[2] == 's' ? 2 : 3);
+	else if (str[0] == '#')
+		;
+	else if (ft_count_words(str, ' ') == 3)
+	{
+		if (*next == 0)
+			ft_error("Room in the middle of links");
+		parse_room(lemin, str, *next);
+	}
+	else
+		return (0);
+	return (1);
+}
+
 void	parse(t_lemin *lemin)
 {
 	int		res;
@@ -66,27 +105,10 @@ void	parse(t_lemin *lemin)
 	line = 0;
 	while ((res = ft_get_next_line(0, &str)) > 0)
 	{
-		if (line++ == 0)
-		{
-			if (!(lemin->num_ants = ft_atoi(str)))
-				ft_error("No ants");
-		}
-		else if (next == 2 || next == 3)
-		{
-			parse_room(lemin, str, next);
-			next = 1;
-		}
-		else if (ft_strequ(str, "##start") || ft_strequ(str, "##end"))
-			next = (str[2] == 's' ? 2 : 3);
-		else if (str[0] == '#')
+		if (parse_rooms(str, &next, &line, lemin))
 			;
-		else if (ft_count_words(str, ' ') == 3)
-		{
-			if (next == 0)
-				ft_error("Room in the middle of links");
-			parse_room(lemin, str, next);
-		}
-		else if (ft_count_words(str, '-') == 2 && str[0] != '-' && str[ft_strlen(str) - 1] != '-')
+		else if (ft_count_words(str, '-') == 2 &&
+			str[0] != '-' && str[ft_strlen(str) - 1] != '-')
 		{
 			if (next != 0)
 				validate_rooms(lemin);

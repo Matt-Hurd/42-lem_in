@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 00:39:20 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/10 11:20:49 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 05:32:59 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 # include "libft.h"
 # include <limits.h>
 # include <stdlib.h>
-
-
-#include <stdio.h>
 
 typedef struct	s_room
 {
@@ -33,7 +30,7 @@ typedef struct	s_path
 	int			length;
 }				t_path;
 
-typedef struct s_ant
+typedef struct	s_ant
 {
 	int			path;
 	int			room;
@@ -49,20 +46,22 @@ typedef struct	s_lemin
 	t_list		*paths;
 	t_path		**patharr;
 	int			*best_paths;
-	int			best_len;
+	int			bl;
 	int			override;
 	int			pc;
 	t_ant		*ants;
 	int			finished;
 }				t_lemin;
 
-void	parse(t_lemin *lemin);
-void	find_paths(t_lemin *lemin, t_list *path, t_room *room);
-void	solve(t_lemin *lemin);
-void	print_rooms(t_lemin *lemin);
-void	print_solution(t_lemin *lemin);
-void	ft_error(char *message);
-void	validate(t_lemin *lemin);
-void	validate_rooms(t_lemin *lemin);
+void			parse(t_lemin *lemin);
+void			find_paths(t_lemin *lemin, t_list *path, t_room *room);
+void			solve(t_lemin *lemin);
+void			print_rooms(t_lemin *lemin);
+void			print_solution(t_lemin *lemin);
+void			ft_error(char *message);
+void			validate(t_lemin *lemin);
+void			validate_rooms(t_lemin *lemin);
+int				find_length(t_lemin *lemin, int *test_path, int pc);
+void			copy_arr(int *dest, int *src, int len);
 
 #endif

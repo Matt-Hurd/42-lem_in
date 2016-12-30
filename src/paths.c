@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paths.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/30 05:19:22 by mhurd             #+#    #+#             */
+/*   Updated: 2016/12/30 05:27:00 by mhurd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <lem_in.h>
 
 static t_room	**list_to_array(t_list *lst)
 {
-	int len;
-	t_room **ret;
-	t_list *l;
+	int		len;
+	t_room	**ret;
+	t_list	*l;
 
 	len = 0;
 	l = lst;
@@ -53,7 +65,8 @@ void			find_paths(t_lemin *lemin, t_list *path, t_room *room)
 	{
 		if (*(t_room **)links->content == lemin->end)
 			add_path(lemin, path);
-		else if (!is_link_in_path(path, *(t_room **)links->content) && *(t_room **)links->content != lemin->start)
+		else if (!is_link_in_path(path, *(t_room **)links->content) &&
+			*(t_room **)links->content != lemin->start)
 		{
 			ft_lstadd(&path, ft_lstnew(links->content, sizeof(t_room *)));
 			find_paths(lemin, path, *(t_room **)links->content);
