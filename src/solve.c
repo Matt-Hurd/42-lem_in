@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:19:46 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 05:33:42 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 22:57:15 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void			find_best_paths(t_lemin *lemin)
 	lemin->pc += 1;
 	while (lemin->bl == -1 && --lemin->pc)
 		backtrack(lemin, test_path, 0, -1);
+	free(test_path);
 }
 
 static void		list_to_array(t_lemin *lemin, t_list *lst)
@@ -87,6 +88,7 @@ static void		list_to_array(t_lemin *lemin, t_list *lst)
 		len++;
 		l = l->next;
 	}
+	lemin->totalpaths = len;
 	lemin->patharr = (t_path **)ft_memalloc(sizeof(t_path *) * (len + 1));
 	while (lst)
 	{

@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:19:18 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 05:25:43 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 23:18:33 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	parse_link(t_lemin *lemin, char *str)
 	}
 	else
 		ft_error("Invalid link");
+	ft_free_strsplit(str, split, '-');
 }
 
 void	parse_room(t_lemin *lemin, char *str, int next)
@@ -49,7 +50,7 @@ void	parse_room(t_lemin *lemin, char *str, int next)
 		ft_error("Bad room name");
 	split = ft_strsplit(str, ' ');
 	room = (t_room *)ft_memalloc(sizeof(t_room));
-	room->name = split[0];
+	room->name = ft_strdup(split[0]);
 	room->x = ft_atoi(split[1]);
 	room->y = ft_atoi(split[2]);
 	ft_lstadd(&lemin->rooms, ft_lstnew(&room, sizeof(t_room *)));
@@ -65,6 +66,7 @@ void	parse_room(t_lemin *lemin, char *str, int next)
 			ft_error("Extra end");
 		lemin->end = room;
 	}
+	ft_free_strsplit(str, split, ' ');
 }
 
 int		parse_rooms(char *str, int *next, int *line, t_lemin *lemin)
@@ -118,5 +120,6 @@ void	parse(t_lemin *lemin)
 		else
 			ft_error("Invalid line");
 		ft_putendl(str);
+		free(str);
 	}
 }

@@ -6,20 +6,11 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:19:42 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 05:28:51 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 22:48:25 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
-
-void	ft_put_move(int ant, char *name)
-{
-	ft_putchar('L');
-	ft_putnbr(ant);
-	ft_putchar('-');
-	ft_putstr(name);
-	ft_putchar(' ');
-}
 
 void	move_ant(t_lemin *lemin, int path)
 {
@@ -33,7 +24,7 @@ void	move_ant(t_lemin *lemin, int path)
 		{
 			name = lemin->patharr[path]->links[0] ?
 				lemin->patharr[path]->links[0]->name : lemin->end->name;
-			ft_put_move(x + 1, name);
+			ft_printf("L%d-%s ", x + 1, name);
 			lemin->remaining_ants--;
 			lemin->ants[x].path = path;
 			if (!lemin->patharr[path]->links[0])
@@ -58,7 +49,7 @@ void	continue_ants(t_lemin *lemin)
 				lemin->patharr[lemin->ants[x].path]->length) ? lemin->end->name
 				: lemin->patharr[lemin->ants[x].path]->links[lemin->ants[x].room
 				+ 1]->name;
-			ft_put_move(x + 1, next);
+			ft_printf("L%d-%s ", x + 1, next);
 			lemin->ants[x].room += 1;
 			if (lemin->patharr[lemin->ants[x].path]->length <=
 				lemin->ants[x].room)
@@ -94,6 +85,7 @@ void	do_turn(t_lemin *lemin)
 			move_ant(lemin, lemin->best_paths[x]);
 	}
 	ft_putchar('\n');
+	lemin->steps++;
 }
 
 void	print_solution(t_lemin *lemin)

@@ -1,110 +1,126 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/25 19:00:08 by mhurd             #+#    #+#              #
+#    Updated: 2016/12/30 23:05:20 by mhurd            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME =	libft.a
-FLAGS =	-O3
+FLAGS =	-Wall -Wextra -Werror -Wmissing-prototypes
 CC = 	gcc
 ODIR =	bin/
-IDIR =
+IDIR =	includes/
 SRC =
 OBJ =	$(SRC:.c=.o)
-EXT =	$(IDIR)$(NAME:.a=.h)
+EXT =	$(IDIR)libft.h
 
 EXT +=	Makefile
-# **************************************************************************** #
-# char                                                                         #
-# **************************************************************************** #
-SRC +=	ft_islower.c
-SRC +=	ft_isupper.c
-SRC +=	ft_isalpha.c
-SRC +=	ft_isdigit.c
-SRC +=	ft_isalnum.c
-SRC +=	ft_isascii.c
-SRC +=	ft_isprint.c
-SRC +=	ft_toupper.c
-SRC +=	ft_tolower.c
-SRC +=	ft_isspace.c
-
-# **************************************************************************** #
-# mem                                                                          #
-# **************************************************************************** #
-SRC +=	ft_memset.c
-SRC +=	ft_bzero.c
-SRC +=	ft_memcpy.c
-SRC +=	ft_memccpy.c
-SRC +=	ft_memmove.c
-SRC +=	ft_memchr.c
-SRC +=	ft_memcmp.c
-
-SRC +=	ft_memalloc.c
-SRC +=	ft_memdel.c
-SRC +=	ft_realloc.c
-# **************************************************************************** #
-# put                                                                          #
-# **************************************************************************** #
-SRC +=	ft_putchar.c
-SRC +=	ft_putchar_fd.c
-SRC +=	ft_putendl.c
-SRC +=	ft_putendl_fd.c
-SRC +=	ft_putnbr.c
-SRC +=	ft_putnbr_fd.c
-SRC +=	ft_putstr.c
-SRC +=	ft_putstr_fd.c
-SRC +=	ft_print_memory.c
-# **************************************************************************** #
-# str                                                                          #
-# **************************************************************************** #
-SRC +=	ft_strlen.c
-SRC +=	ft_strdup.c
-SRC +=	ft_strcpy.c
-SRC +=	ft_strncpy.c
-SRC +=	ft_strcat.c
-SRC +=	ft_strncat.c
-SRC +=	ft_strlcat.c
-SRC +=	ft_strchr.c
-SRC +=	ft_strrchr.c
-SRC +=	ft_strstr.c
-SRC +=	ft_strnstr.c
-SRC +=	ft_strcmp.c
-SRC +=	ft_strncmp.c
-SRC +=	ft_strrev.c
-
-SRC +=	ft_strnew.c
-SRC +=	ft_strdel.c
-SRC +=	ft_strclr.c
-SRC +=	ft_striter.c
-SRC +=	ft_striteri.c
-SRC +=	ft_strmap.c
-SRC +=	ft_strmapi.c
-SRC +=	ft_strequ.c
-SRC +=	ft_strnequ.c
-SRC +=	ft_strsub.c
-SRC +=	ft_strjoin.c
-SRC +=	ft_strtrim.c
-SRC +=	ft_strsplit.c
-
-SRC +=	ft_strcjoin.c
-SRC +=	ft_printjoin.c
-SRC	+=	ft_count_words.c
-# **************************************************************************** #
-# integer                                                                      #
-# **************************************************************************** #
-SRC +=	ft_atoi.c
-SRC +=	ft_itoa.c
-SRC +=	ft_atol.c
-# **************************************************************************** #
-# list                                                                         #
-# **************************************************************************** #
-SRC +=	ft_lstnew.c
-SRC +=	ft_lstdelone.c
-SRC +=	ft_lstdel.c
-SRC +=	ft_lstadd.c
-SRC +=	ft_lstiter.c
-SRC +=	ft_lstmap.c
-SRC +=	ft_lstmap.c
-SRC	+=	ft_lstdelcont.c
-SRC	+=	ft_lst_add_back.c
-
-SRC +=	ft_gnl.c
+SRC =	src/ft_printf.c \
+		src/helpers/flag_finder.c \
+		src/helpers/handle_padding.c \
+		src/helpers/handle_precision.c \
+		src/helpers/num_to_string.c \
+		src/helpers/num_helpers.c \
+		src/conversions/ft_conv_s.c \
+		src/conversions/ft_conv_c.c \
+		src/conversions/ft_conv_nums.c \
+		src/conversions/ft_conv_unimp.c \
+		src/conversions/ft_conv_percent.c \
+		src/conversions/ft_conv_n.c \
+		src/libft/ft_islower.c \
+		src/libft/ft_isupper.c \
+		src/libft/ft_isalpha.c \
+		src/libft/ft_isdigit.c \
+		src/libft/ft_isalnum.c \
+		src/libft/ft_isascii.c \
+		src/libft/ft_isprint.c \
+		src/libft/ft_toupper.c \
+		src/libft/ft_tolower.c \
+		src/libft/ft_isspace.c \
+		src/libft/ft_memset.c \
+		src/libft/ft_bzero.c \
+		src/libft/ft_memcpy.c \
+		src/libft/ft_memccpy.c \
+		src/libft/ft_memmove.c \
+		src/libft/ft_memchr.c \
+		src/libft/ft_memcmp.c \
+		src/libft/ft_memalloc.c \
+		src/libft/ft_memdel.c \
+		src/libft/ft_realloc.c \
+		src/libft/ft_putchar.c \
+		src/libft/ft_putchar_fd.c \
+		src/libft/ft_putendl.c \
+		src/libft/ft_putendl_fd.c \
+		src/libft/ft_putnbr.c \
+		src/libft/ft_putnbr_fd.c \
+		src/libft/ft_putstr.c \
+		src/libft/ft_putstr_fd.c \
+		src/libft/ft_print_memory.c \
+		src/libft/ft_strlen.c \
+		src/libft/ft_strdup.c \
+		src/libft/ft_strcpy.c \
+		src/libft/ft_strncpy.c \
+		src/libft/ft_strcat.c \
+		src/libft/ft_strncat.c \
+		src/libft/ft_strlcat.c \
+		src/libft/ft_strchr.c \
+		src/libft/ft_strrchr.c \
+		src/libft/ft_strstr.c \
+		src/libft/ft_strnstr.c \
+		src/libft/ft_strcmp.c \
+		src/libft/ft_strncmp.c \
+		src/libft/ft_strrev.c \
+		src/libft/ft_strnew.c \
+		src/libft/ft_strdel.c \
+		src/libft/ft_strclr.c \
+		src/libft/ft_striter.c \
+		src/libft/ft_striteri.c \
+		src/libft/ft_strmap.c \
+		src/libft/ft_strmapi.c \
+		src/libft/ft_strequ.c \
+		src/libft/ft_strnequ.c \
+		src/libft/ft_strsub.c \
+		src/libft/ft_strjoin.c \
+		src/libft/ft_strtrim.c \
+		src/libft/ft_strsplit.c \
+		src/libft/ft_strnjoin.c \
+		src/libft/ft_strnjoinf.c \
+		src/libft/ft_strcjoin.c \
+		src/libft/ft_printjoin.c \
+		src/libft/ft_count_words.c \
+		src/libft/ft_atoi.c \
+		src/libft/ft_itoa.c \
+		src/libft/ft_itoa_base.c \
+		src/libft/ft_lstnew.c \
+		src/libft/ft_lstdelone.c \
+		src/libft/ft_lstdel.c \
+		src/libft/ft_lstadd.c \
+		src/libft/ft_lstiter.c \
+		src/libft/ft_lstmap.c \
+		src/libft/ft_lstmap.c \
+		src/libft/ft_lstdelcont.c \
+		src/libft/ft_lst_add_back.c \
+		src/libft/ft_strcatf.c \
+		src/libft/ft_strjoinf.c \
+		src/libft/ft_gnl.c \
+		src/libft/ft_wchar_len.c \
+		src/libft/ft_wchardup.c \
+		src/libft/ft_wcharp_len.c \
+		src/libft/ft_wcharp_to_str.c \
+		src/libft/ft_wchar_to_str.c \
+		src/libft/ft_lstdelall.c \
+		src/libft/ft_free_strsplit.c
 
 O =		$(addprefix $(ODIR), $(OBJ))
+
+ifdef ALLOCWRAP
+	LDFLAGS += $(HOME)/lib/alloc_wrap.c -ldl
+endif
 
 all: $(NAME)
 
@@ -119,16 +135,23 @@ $(NAME): $(O) $(EXT)
 
 $(ODIR)%.o: %.c $(EXT)
 	@echo "-> Compiling $<..."
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c -I includes $< -o $@
 
 $(O): | ./bin
 
 ./bin:
 	@mkdir $(ODIR)
+	@mkdir $(ODIR)src/
+	@mkdir $(ODIR)src/conversions/
+	@mkdir $(ODIR)src/helpers/
+	@mkdir $(ODIR)src/libft/
+
+test: $(NAME)
+	$(CC) $(LDFLAGS) -o $@ -I includes main.c -L. -lftprintf
 
 clean:
 	@echo "-> Cleaning libft object files..."
-	@rm -f bin/*.o
+	@rm -rf bin/
 
 fclean: clean
 	@echo "-> Cleaning $(NAME)..."

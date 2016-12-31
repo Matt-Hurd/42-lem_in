@@ -6,7 +6,7 @@
 #    By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/28 19:34:56 by mhurd             #+#    #+#              #
-#    Updated: 2016/12/30 05:35:21 by mhurd            ###   ########.fr        #
+#    Updated: 2016/12/30 22:09:28 by mhurd            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC	=		main.c \
 			printer.c \
 			error.c \
 			validate.c \
-			helpers.c
+			helpers.c \
+			bonus.c
 
 ifdef ALLOCWRAP
 	LDFLAGS += $(HOME)/lib/alloc_wrap.c -ldl
@@ -30,7 +31,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -O3 -funroll-loops -march=native
 
 LIBFT	= ./libft/libft.a
-LIBINC	= -I./libft
+LIBINC	= -I./libft/includes
 LIBLINK	= -L./libft -lft
 
 SRCDIR	= ./src/

@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 00:39:20 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 05:32:59 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 22:50:30 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "libft.h"
 # include <limits.h>
 # include <stdlib.h>
+# include <time.h>
 
 typedef struct	s_room
 {
@@ -36,6 +37,15 @@ typedef struct	s_ant
 	int			room;
 }				t_ant;
 
+typedef struct	s_bonus
+{
+	char		ants : 1;
+	char		paths : 1;
+	char		steps : 1;
+	char		allpaths : 1;
+	char		time : 1;
+}				t_bonus;
+
 typedef struct	s_lemin
 {
 	int			num_ants;
@@ -51,6 +61,10 @@ typedef struct	s_lemin
 	int			pc;
 	t_ant		*ants;
 	int			finished;
+	t_bonus		bonus;
+	int			steps;
+	int			totalpaths;
+	clock_t		begin;
 }				t_lemin;
 
 void			parse(t_lemin *lemin);
@@ -63,5 +77,6 @@ void			validate(t_lemin *lemin);
 void			validate_rooms(t_lemin *lemin);
 int				find_length(t_lemin *lemin, int *test_path, int pc);
 void			copy_arr(int *dest, int *src, int len);
+void			print_bonus(t_lemin *lemin);
 
 #endif
