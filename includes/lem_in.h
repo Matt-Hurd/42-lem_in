@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 00:39:20 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 22:50:30 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 23:34:16 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <time.h>
+
+# define RED   "\x1B[31m"
+# define COL_RESET "\x1B[0m"
 
 typedef struct	s_room
 {
@@ -44,6 +47,7 @@ typedef struct	s_bonus
 	char		steps : 1;
 	char		allpaths : 1;
 	char		time : 1;
+	char		color : 1;
 }				t_bonus;
 
 typedef struct	s_lemin

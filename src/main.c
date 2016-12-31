@@ -6,7 +6,7 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:19:13 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 23:16:18 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 23:30:45 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void		parse_args(int ac, char **av, t_lemin *lemin)
 			lemin->bonus.time = 1;
 		if (ft_strequ(av[x], "-s"))
 			lemin->bonus.allpaths = 1;
+		if (ft_strequ(av[x], "-c"))
+			lemin->bonus.color = 1;
 	}
 }
 

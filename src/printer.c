@@ -6,11 +6,21 @@
 /*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 05:19:42 by mhurd             #+#    #+#             */
-/*   Updated: 2016/12/30 22:48:25 by mhurd            ###   ########.fr       */
+/*   Updated: 2016/12/30 23:35:14 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
+void	print_ant(t_lemin *lemin, int ant, char *name)
+{
+	(void)lemin;
+	if (lemin->bonus.color)
+		ft_printf("\x1B[%dm", ant % 7 + 31);
+	ft_printf("L%d-%s ", ant, name);
+	if (lemin->bonus.color)
+		ft_printf("%s", COL_RESET);
+}
 
 void	move_ant(t_lemin *lemin, int path)
 {
@@ -24,7 +34,7 @@ void	move_ant(t_lemin *lemin, int path)
 		{
 			name = lemin->patharr[path]->links[0] ?
 				lemin->patharr[path]->links[0]->name : lemin->end->name;
-			ft_printf("L%d-%s ", x + 1, name);
+			print_ant(lemin, x + 1, name);
 			lemin->remaining_ants--;
 			lemin->ants[x].path = path;
 			if (!lemin->patharr[path]->links[0])
@@ -49,7 +59,7 @@ void	continue_ants(t_lemin *lemin)
 				lemin->patharr[lemin->ants[x].path]->length) ? lemin->end->name
 				: lemin->patharr[lemin->ants[x].path]->links[lemin->ants[x].room
 				+ 1]->name;
-			ft_printf("L%d-%s ", x + 1, next);
+			print_ant(lemin, x + 1, next);
 			lemin->ants[x].room += 1;
 			if (lemin->patharr[lemin->ants[x].path]->length <=
 				lemin->ants[x].room)
