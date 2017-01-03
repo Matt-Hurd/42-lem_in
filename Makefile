@@ -6,7 +6,7 @@
 #    By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/28 19:34:56 by mhurd             #+#    #+#              #
-#    Updated: 2016/12/30 22:09:28 by mhurd            ###   ########.fr        #
+#    Updated: 2017/01/02 17:42:48 by mhurd            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,6 @@ SRC	=		main.c \
 			validate.c \
 			helpers.c \
 			bonus.c
-
-ifdef ALLOCWRAP
-	LDFLAGS += $(HOME)/lib/alloc_wrap.c -ldl
-endif
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc
